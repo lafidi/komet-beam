@@ -7,7 +7,7 @@ $salt = "CCBL5amPqJHL3H9CanTM65t5";
 $mailAnfang = "Bitte klicke auf den folgenden Link um deine Anfrage über der BEAM-Datenbank der KOMET an die entsprechenden Kontakte abzusenden";
 $mailEnde = "Solltest du diese Anfrage nicht veranlasst haben, brauchst du nichts zu tun. Deine Daten werden dann nicht gespeichert.";
 $mailBetreff = "Deine Anfrage über BEAM-Datenbank";
-$mailAnfrageAnfang = "Du bist als Erfahrungsparte für die im Betreff genannte Firma als Pate genannt. Folgende Anfrage kam dazu herein. Um mit dem Absender in Kontakt zu treten, antworte direkt auf diese Mail oder schreibe ihm gesondert.";
+$mailAnfrageAnfang = "Du bist als Erfahrungspate für die im Betreff genannte Firma als Pate genannt. Folgende Anfrage kam dazu herein. Um mit dem Absender in Kontakt zu treten, antworte direkt auf diese Mail oder schreibe ihm gesondert.";
 $mailAnfrageEnde = "\r\n\r\nWenn du nicht mehr in diesem Verteiler sein willst, lass uns das über beam@die-komet.org wissen, dann nehmen wir dich aus dem Verteiler wieder raus.";
 $mailAnfrageBetreff = "BEAM-Datenbank :: Anfrage zu deinem Erfahrungsbericht für die Firma";
 $mailAbsender = "beam@die-komet.org";
@@ -15,6 +15,8 @@ $mailAbsender = "beam@die-komet.org";
 $client = Google_Spreadsheet::getClient('google-api-zugang-F7QZQDBdmBA8nU93ndVt2A4UF7QZQDBdmBA8nU93ndVt2A4U.json');
 // Get the sheet instance by sheets_id and sheet name
 $file = $client->file('19u3EKsPTS_gnafqjFBMqY_IIWVHbUOFumObeiUwGlD4');
+
+$ungueltigeMail = false;
 
 if ( !filter_var(strip_tags($_REQUEST['e-mail']), FILTER_VALIDATE_EMAIL) ) {
     unset($_REQUEST['e-mail']);
@@ -80,9 +82,9 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
 <?php
 elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash']) && ($_REQUEST['hash'] == sha1($_REQUEST['e-mail'] . $salt))) ):
 
-    if ( isset($_REQUEST['hash']) && ($_REQUEST['hash'] == sha1($_REQUEST['e-mail'] . $salt)) ):
+    $verschickteAnzahl = 0;
 
-        // TODO hier noch bearbeiten
+    if ( isset($_REQUEST['hash']) && ($_REQUEST['hash'] == sha1($_REQUEST['e-mail'] . $salt)) ):
 
         $mailHeader = 'From: ' . $mailAbsender . "\r\n" .
             'Reply-To: ' . strip_tags($_REQUEST['e-mail']) . "\r\n";
@@ -95,7 +97,6 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
             $mailAnfrageEnde;
 
         $kontakte = $file->sheet('Erfahrungsberichte')->fetch()->items;
-        $verschickteAnzahl = 0;
 
         foreach ($kontakte as $kontakt):
 
@@ -156,7 +157,7 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
     <body>
 
     <p>
-        <?php if ($anfrageAbgeschickt): ?>
+        <?php if ( $anfrageAbgeschickt ): ?>
             Die folgenden Daten wurden übermittelt und an <?php echo $verschickteAnzahl ?> Kontakte versandt.
         <?php else: ?>
             Die folgenden Daten wurden übermittelt und werden versandt nachdem du den Link in der Bestätigungsmail angeklickt hast.
@@ -195,5 +196,5 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
 <?php
 
 else:
-    exit('Unbekanter Status erreicht');
+    exit('Unbekannter Status erreicht');
 endif;

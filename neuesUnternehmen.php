@@ -130,5 +130,5 @@ elseif( $_REQUEST['captcha'] == $_SESSION['captcha'] ):
 <?php
 
 else:
-    exit('Unbekanter Status erreicht');
+    exit('Unbekannter Status erreicht');
 endif;
