@@ -1,0 +1,5 @@
+{
+    "require": {
+        "mach3/google-spreadsheet": "^1.1"
+    }
+}
