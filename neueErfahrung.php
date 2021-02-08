@@ -16,7 +16,7 @@ $file = $client->file('19u3EKsPTS_gnafqjFBMqY_IIWVHbUOFumObeiUwGlD4');
 
 $ungueltigeMail = false;
 
-if ( !filter_var(strip_tags($_REQUEST['e-mail']), FILTER_VALIDATE_EMAIL) ) {
+if ( isset($_REQUEST['e-mail']) && !filter_var(strip_tags($_REQUEST['e-mail']), FILTER_VALIDATE_EMAIL) ) {
     unset($_REQUEST['e-mail']);
     unset($_SESSION['captcha']);
     $ungueltigeMail = true;
