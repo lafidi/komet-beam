@@ -122,7 +122,14 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
         mail (
             $mailAbsender,
             "neuer Eintrag in der BEAM-Datenbank",
-            "Bitte den neuen Eintrag von " . strip_tags($_REQUEST['name']) . " freischalten.",
+            "Bitte den neuen Eintrag von " . strip_tags($_REQUEST['name']) . " prüfen.\r\n" .
+            "Folgende Inhalte wurden eingetragen:\r\n" .
+            "Name des Eintragenden: " . strip_tags($_REQUEST['name']) . "\r\n" .
+            "E-Mail des Eintragenden: " . strip_tags($_REQUEST['e-mail']) . "\r\n" .
+            "Unternehmen: " . strip_tags($_REQUEST['firma']) . "\r\n" .
+            "Erfahrungsbericht: " . strip_tags($_REQUEST['erfahrungsbericht']) . "\r\n" .
+            "Tätigkeit: " . strip_tags($_REQUEST['taetigkeit']) . "\r\n" .
+            "Tätigkeitsfeld: " . strip_tags($_REQUEST['taetigkeitsfeld']) . "\r\n",
             $mailHeader
         );
 
