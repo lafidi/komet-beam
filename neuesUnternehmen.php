@@ -31,11 +31,6 @@ if( !(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captch
         </div>
 
         <div class="form-group">
-            <label for="kurzbeschreibung">Kurzbeschreibung</label>
-            <textarea class="form-control" name="kurzbeschreibung" id="kurzbeschreibung" placeholder="Kurzbeschreibung"><?php echo $_REQUEST['kurzbeschreibung'] ?></textarea>
-        </div>
-
-        <div class="form-group">
             <label for="branche">Branche</label>
             <select class="form-control" name="branche" id="branche">
                 <?php foreach ($branchen as $branche):?>
@@ -71,7 +66,6 @@ elseif( $_REQUEST['captcha'] == $_SESSION['captcha'] ):
 
     $file->sheet('Unternehmen')->insert(array(
         'Unternehmen' => strip_tags($_REQUEST['name']),
-        'Kurzbeschreibung' => strip_tags($_REQUEST['kurzbeschreibung']),
         'Branche' => strip_tags($_REQUEST['branche']),
         'Homepage' => strip_tags($_REQUEST['homepage']),
     ));
@@ -81,7 +75,6 @@ elseif( $_REQUEST['captcha'] == $_SESSION['captcha'] ):
         "neues Unternehmen in der BEAM-Datenbank",
         "Bitte bei Gelegenheit die Angaben zur Firma " . strip_tags($_REQUEST['name']) . " prüfen. \r\n".
         'Unternehmen: ' . strip_tags($_REQUEST['name']) . "\r\n" .
-        'Kurzbeschreibung: ' . strip_tags($_REQUEST['kurzbeschreibung']) . "\r\n" .
         'Branche: ' . strip_tags($_REQUEST['branche']) . "\r\n" .
         'Homepage: ' . strip_tags($_REQUEST['homepage']),
         $mailHeader
@@ -110,10 +103,6 @@ elseif( $_REQUEST['captcha'] == $_SESSION['captcha'] ):
         <tr>
             <td>Name des Unternehmens</td>
             <td><?php echo strip_tags($_REQUEST['name']); ?></td>
-        </tr>
-        <tr>
-            <td>Kurzbeschreibung</td>
-            <td><?php echo strip_tags($_REQUEST['kurzbeschreibung']); ?></td>
         </tr>
         <tr>
             <td>Branche</td>
