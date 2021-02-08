@@ -92,7 +92,7 @@ elseif( $_REQUEST['captcha'] == $_SESSION['captcha'] ):
     <body>
 
     <p>
-        Die folgenden Daten wurden übermittelt und gespeichert.
+        Die folgenden Daten wurden übermittelt und gespeichert. Kehre jetzt über diesen Link NEUERLINK zurück und Trage deinen Daten ein.
     </p>
 
     <table>
@@ -113,10 +113,6 @@ elseif( $_REQUEST['captcha'] == $_SESSION['captcha'] ):
             <td><?php echo strip_tags($_REQUEST['homepage']); ?></td>
         </tr>
     </table>
-
-    <p>
-        Damit andere auf diese Daten zugreifen können, müssen diese noch von uns freigeschaltet werden.
-    </p>
 
     </body>
     </html>
