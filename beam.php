@@ -206,13 +206,13 @@ asort($branchen);
             ?>
             <tr>
                 <td>
-                    <?php echo $row['Unternehmen'] ?>
+                    <a href="erfahrungenAnfragen.php?firma=<?php echo urlencode($row['Unternehmen']) ?>" target="_blank"><?php echo $row['Unternehmen'] ?></a>
                 </td>
                 <td>
                     <?php echo $row['Branche'] ?>
                 </td>
                 <td>
-                    <?php echo $row['Homepage'] ?>
+                    <a href="<?php echo $row['Homepage'] ?>" target="_blank"><?php echo $row['Homepage'] ?></a>
                 </td>
                 <td>
                     <?php echo ($row['Erfahrungsberichte Praktika vorhanden'] == 'ja'
