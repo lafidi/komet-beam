@@ -5,7 +5,7 @@ require_once ('vendor/autoload.php');
 $salt = "TiExL4Qz245iuRPQ2sZSYFC8";
 
 $mailAnfang = "Bitte klicke auf den folgenden Link um deinen Eintrag in der BEAM-Datenbank der KOMET zu speichern";
-$mailEnde = "Solltest du diese Eintragung nicht veranlasst haben, brauchst du nichts zu tun. Deine Daten werden dann nicht gespeichert.";
+$mailEnde = "Solltest du diese Eintragung nicht veranlasst haben, brauchst du nichts zu tun. Deine Daten werden dann nicht gespeichert. Solltest du dich eingetragen haben und wieder gelöscht werden wollen, wende dich an beam@die-komet.org.";
 $mailBetreff = "Deine Eintragung in der BEAM-Datenbank";
 $mailAbsender = "beam@die-komet.org";
 
