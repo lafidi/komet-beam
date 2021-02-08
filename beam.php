@@ -69,7 +69,7 @@ asort($branchen);
 
     <script>
         function filter() {
-            let input, filter, table, tr, td, i, txtValue;
+            let table, tr, i;
             let inputBranche = document.getElementById("myInputBranche");
             let inputUnternehmen = document.getElementById("myUnternehmen");
             let filterBranche = inputBranche.value.toUpperCase();
@@ -97,7 +97,7 @@ asort($branchen);
 
     <script>
         function sortTable(n) {
-            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
             table = document.getElementById("myTable");
             switching = true;
             //Set the sorting direction to ascending:
@@ -119,13 +119,13 @@ asort($branchen);
                     y = rows[i + 1].getElementsByTagName("TD")[n];
                     /*check if the two rows should switch place,
                     based on the direction, asc or desc:*/
-                    if (dir == "asc") {
+                    if (dir === "asc") {
                         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                             //if so, mark as a switch and break the loop:
                             shouldSwitch = true;
                             break;
                         }
-                    } else if (dir == "desc") {
+                    } else if (dir === "desc") {
                         if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
                             //if so, mark as a switch and break the loop:
                             shouldSwitch = true;
@@ -143,7 +143,7 @@ asort($branchen);
                 } else {
                     /*If no switching has been done AND the direction is "asc",
                     set the direction to "desc" and run the while loop again.*/
-                    if (switchcount == 0 && dir == "asc") {
+                    if (switchcount === 0 && dir === "asc") {
                         dir = "desc";
                         switching = true;
                     }
@@ -167,7 +167,7 @@ asort($branchen);
 
 <div style="width: 49%; float: left;">
     <h3>Branche</h3>
-    <select id="myInputBranche" onchange="filter()" placeholder="Branche suchen"
+    <select id="myInputBranche" onchange="filter()"
             title="Branche eingeben">
         <option value="">bitte wählen</option>
         <?php foreach ($branchen as $branche):?>

@@ -113,26 +113,26 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
     <script>
         function getQueryVariable(variable)
         {
-            var query = window.location.search.substring(1);
-            var vars = query.split("&");
-            for (var i=0;i<vars.length;i++)
+            const query = window.location.search.substring(1);
+            const vars = query.split("&");
+            for (let i=0; i<vars.length; i++)
             {
-                var pair = vars[i].split("=");
-                if (pair[0] == variable) {
+                const pair = vars[i].split("=");
+                if (pair[0] === variable) {
                     return pair[1];
                 }
             }
         }
 
-        var optionName = getQueryVariable("firma");
+        let optionName = getQueryVariable("firma");
         optionName = decodeURI(optionName);
         if (optionName !== undefined)
         {
-            var s = document.getElementById("firma");
+            const s = document.getElementById("firma");
 
-            for ( var i = 0; i < s.options.length; i++ )
+            for (let i = 0; i < s.options.length; i++ )
             {
-                if ( s.options[i].text == optionName )
+                if ( s.options[i].text === optionName )
                 {
                     s.options[i].selected = true;
                     break;
