@@ -79,7 +79,11 @@ elseif( $_REQUEST['captcha'] == $_SESSION['captcha'] ):
     mail (
         $mailAbsender,
         "neues Unternehmen in der BEAM-Datenbank",
-        "Bitte bei Gelegenheit die Angaben zur Firma " . strip_tags($_REQUEST['name']) . " prüfen.",
+        "Bitte bei Gelegenheit die Angaben zur Firma " . strip_tags($_REQUEST['name']) . " prüfen. \r\n".
+        'Unternehmen: ' . strip_tags($_REQUEST['name']) . "\r\n" .
+        'Kurzbeschreibung: ' . strip_tags($_REQUEST['kurzbeschreibung']) . "\r\n" .
+        'Branche: ' . strip_tags($_REQUEST['branche']) . "\r\n" .
+        'Homepage: ' . strip_tags($_REQUEST['homepage']),
         $mailHeader
     );
 
