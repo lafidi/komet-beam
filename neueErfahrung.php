@@ -116,7 +116,7 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
             'Erfahrung' => strip_tags($_REQUEST['erfahrungsbericht']),
             'Tätigkeit' => strip_tags($_REQUEST['taetigkeit']),
             'Tätigkeitsfeld' => strip_tags($_REQUEST['taetigkeitsfeld']),
-            'Freigegeben' => 'nein',
+            'Freigegeben' => 'ja',
         ));
 
         mail (
