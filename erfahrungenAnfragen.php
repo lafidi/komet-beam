@@ -115,6 +115,13 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
 
         endforeach;
 
+        mail (
+            $mailAbsender,
+            "Anfrage abgeschickt: " . $mailAnfrageBetreff . " " . strip_tags($_REQUEST['firma']),
+            $mailInhalt,
+            $mailHeader
+        );
+
         $anfrageAbgeschickt = true;
 
     else:
