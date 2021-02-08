@@ -54,7 +54,7 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
 
         <div class="form-group">
             <label for="jahr">Jahr *</label>
-            <input type="text" class="form-control" name="jahr" id="jahr" placeholder="Jahr" required="required" value="<?php echo $_REQUEST['jahr'] ?>">
+            <input type="text" class="form-control" name="jahr" id="jahr" placeholder="Jahr" required="required" value="<?php echo date('Y'); ?>">
         </div>
 
         <div class="form-group">
