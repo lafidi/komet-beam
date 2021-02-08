@@ -232,5 +232,9 @@ asort($branchen);
 
 </div>
 
+<script>
+    sortTable(0);
+</script>
+
 </body>
 </html>
