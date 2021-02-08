@@ -53,6 +53,11 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
         </div>
 
         <div class="form-group">
+            <label for="jahr">Jahr *</label>
+            <input type="text" class="form-control" name="jahr" id="jahr" placeholder="Jahr" required="required" value="<?php echo $_REQUEST['jahr'] ?>">
+        </div>
+
+        <div class="form-group">
             <label for="firma">Firma</label>
             <select class="form-control" name="firma" id="firma">
                 <?php foreach ($unternehmensNamen as $unternehmensName):?>
@@ -61,11 +66,6 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
                     <?php endif; ?>
                 <?php endforeach; ?>
             </select>
-        </div>
-
-        <div class="form-group">
-            <label for="erfahrungsbericht">Erfahrungsbericht</label>
-            <textarea class="form-control" name="erfahrungsbericht" id="erfahrungsbericht" placeholder="Erfahrungsbericht"><?php echo $_REQUEST['erfahrungsbericht'] ?></textarea>
         </div>
 
         <div class="form-group">
@@ -91,6 +91,11 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
         </div>
 
         <div class="form-group">
+            <label for="notizen">Du willst noch weiteres Mitteilen? Probleme, Rechtschreibfehler etc?</label>
+            <textarea class="form-control" name="notizen" id="notizen" placeholder="Notizen etc."><?php echo $_REQUEST['notizen'] ?></textarea>
+        </div>
+
+        <div class="form-group">
             <label for="captcha">Captcha * <?php echo ( isset($_REQUEST['captcha']) && ($_REQUEST['captcha'] != $_SESSION['captcha']) ) ? "<b>Das eingegebene Ergebnis war falsch. Bitte erneut versuchen.</b>" : '' ?></label><br>
             <img src="captcha/captcha.php" class="noframe" alt="" id="captchaImage" />
             <input type="text" class="form-control" name="captcha" id="captcha" placeholder="Bitte das Ergebnis der Rechnung im Bild eintippen" required="required">
@@ -113,10 +118,11 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
             'Name' => strip_tags($_REQUEST['name']),
             'E-Mail' => strip_tags($_REQUEST['e-mail']),
             'Firma' => strip_tags($_REQUEST['firma']),
-            'Erfahrung' => strip_tags($_REQUEST['erfahrungsbericht']),
+            'Jahr' => strip_tags($_REQUEST['jahr']),
             'Tätigkeit' => strip_tags($_REQUEST['taetigkeit']),
             'Tätigkeitsfeld' => strip_tags($_REQUEST['taetigkeitsfeld']),
             'Freigegeben' => 'ja',
+            'Notizen' => strip_tags($_REQUEST['notizen']),
         ));
 
         mail (
@@ -127,9 +133,10 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
             "Name des Eintragenden: " . strip_tags($_REQUEST['name']) . "\r\n" .
             "E-Mail des Eintragenden: " . strip_tags($_REQUEST['e-mail']) . "\r\n" .
             "Unternehmen: " . strip_tags($_REQUEST['firma']) . "\r\n" .
-            "Erfahrungsbericht: " . strip_tags($_REQUEST['erfahrungsbericht']) . "\r\n" .
+            "Jahr: " . strip_tags($_REQUEST['jahr']) . "\r\n" .
             "Tätigkeit: " . strip_tags($_REQUEST['taetigkeit']) . "\r\n" .
-            "Tätigkeitsfeld: " . strip_tags($_REQUEST['taetigkeitsfeld']) . "\r\n",
+            "Tätigkeitsfeld: " . strip_tags($_REQUEST['taetigkeitsfeld']) . "\r\n" .
+            "Notizen: " . strip_tags($_REQUEST['notizen']) . "\r\n",
             $mailHeader
         );
 
@@ -142,7 +149,8 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
             'name',
             'e-mail',
             'firma',
-            'erfahrungsbericht',
+            'jahr',
+            'notizen',
             'taetigkeit',
             'taetigkeitsfeld',
         );
@@ -196,12 +204,12 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
             <td><?php echo strip_tags($_REQUEST['e-mail']); ?></td>
         </tr>
         <tr>
-            <td>Erfahrung</td>
-            <td><?php echo strip_tags($_REQUEST['erfahrungsbericht']); ?></td>
-        </tr>
-        <tr>
             <td>Firma</td>
             <td><?php echo strip_tags($_REQUEST['firma']); ?></td>
+        </tr>
+        <tr>
+            <td>Jahr</td>
+            <td><?php echo strip_tags($_REQUEST['jahr']); ?></td>
         </tr>
         <tr>
             <td>Tätigkeit</td>
@@ -210,6 +218,10 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
         <tr>
             <td>Tätigkeitsfeld</td>
             <td><?php echo strip_tags($_REQUEST['taetigkeitsfeld']); ?></td>
+        </tr>
+        <tr>
+            <td>Notizen etc.</td>
+            <td><?php echo strip_tags($_REQUEST['notizen']); ?></td>
         </tr>
     </table>
 
