@@ -109,6 +109,37 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
 
         <small>Mit * markierte Felder sind Pflichtfelder.</small>
     </form>
+
+    <script>
+        function getQueryVariable(variable)
+        {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++)
+            {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) {
+                    return pair[1];
+                }
+            }
+        }
+
+        var optionName = getQueryVariable("firma");
+        optionName = decodeURI(optionName);
+        if (optionName !== undefined)
+        {
+            var s = document.getElementById("firma");
+
+            for ( var i = 0; i < s.options.length; i++ )
+            {
+                if ( s.options[i].text == optionName )
+                {
+                    s.options[i].selected = true;
+                    break;
+                }
+            }
+        }
+    </script>
     </body>
     </html>
 <?php
