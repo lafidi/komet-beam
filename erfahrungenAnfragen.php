@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once ('vendor/autoload.php');
+include_once ('mailblacklist.php');
 
 $salt = "CCBL5amPqJHL3H9CanTM65t5";
 
@@ -82,11 +83,13 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
     </html>
 <?php
 elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash']) && ($_REQUEST['hash'] == sha1($_REQUEST['e-mail'] . $salt))) ):
+    if (in_array(strtolower(strip_tags($_REQUEST['e-mail'])), $mailblacklist)) {
+        exit ("Mail geblockt");
+    }
 
     $verschickteAnzahl = 0;
 
     if ( isset($_REQUEST['hash']) && ($_REQUEST['hash'] == sha1($_REQUEST['e-mail'] . $salt)) ):
-
         $mailHeader = 'From: ' . $mailAbsender . "\r\n" .
             'Reply-To: ' . strip_tags($_REQUEST['e-mail']) . "\r\n";
 
@@ -125,7 +128,6 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
         $anfrageAbgeschickt = true;
 
     else:
-
         $requestArray = $_REQUEST;
         $whitelist = array(
             'name',

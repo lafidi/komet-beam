@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once ('vendor/autoload.php');
+include_once ('mailblacklist.php');
 
 $salt = "TiExL4Qz245iuRPQ2sZSYFC8";
 
@@ -146,6 +147,9 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
         $eintrag = true;
 
     else:
+        if (in_array(strtolower(strip_tags($_REQUEST['e-mail'])), $mailblacklist)) {
+            exit ("Mail geblockt");
+        }
 
         $requestArray = $_REQUEST;
         $whitelist = array(
