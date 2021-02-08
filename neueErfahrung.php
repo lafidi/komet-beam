@@ -60,6 +60,7 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
         <div class="form-group">
             <label for="firma">Firma      <small>Deine Firma ist nicht dabei? Hier eintragen: NEUERLINK</small></label>
             <select class="form-control" name="firma" id="firma">
+                <option selected>Bitte auswählen</option>
                 <?php foreach ($unternehmensNamen as $unternehmensName):?>
                     <?php if ( $unternehmensName != '' ): ?>
                         <option value="<?php echo $unternehmensName; ?>" <?php echo ($unternehmensName == $_REQUEST['firma']) ? 'selected' : '' ?>><?php echo $unternehmensName; ?></option>
@@ -71,6 +72,7 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
         <div class="form-group">
             <label for="taetigkeit">Tätigkeit</label>
             <select class="form-control" name="taetigkeit" id="taetigkeit">
+                <option selected>Bitte auswählen</option>
                 <?php foreach ($taetigkeiten as $taetigkeit):?>
                     <?php if ( $taetigkeit != '' ): ?>
                         <option value="<?php echo $taetigkeit; ?>" <?php echo ($taetigkeit == $_REQUEST['taetigkeit']) ? 'selected' : '' ?>><?php echo $taetigkeit; ?></option>
@@ -82,6 +84,7 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
         <div class="form-group">
             <label for="taetigkeitsfeld">Tätigkeitsfeld</label>
             <select class="form-control" name="taetigkeitsfeld" id="taetigkeitsfeld">
+                <option selected>Bitte auswählen</option>
                 <?php foreach ($taetigkeitsfelder as $taetigkeitsfeld):?>
                     <?php if ( $taetigkeitsfeld != '' ): ?>
                         <option value="<?php echo $taetigkeitsfeld; ?>" <?php echo ($taetigkeitsfeld == $_REQUEST['taetigkeitsfeld']) ? 'selected' : '' ?>><?php echo $taetigkeitsfeld; ?></option>

@@ -33,6 +33,7 @@ if( !(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captch
         <div class="form-group">
             <label for="branche">Branche</label>
             <select class="form-control" name="branche" id="branche">
+                <option selected>Bitte auswählen</option>
                 <?php foreach ($branchen as $branche):?>
                     <?php if ( $branche != '' ): ?>
                         <option value="<?php echo $branche; ?>" <?php echo ($branche == $_REQUEST['branche']) ? 'selected' : '' ?>><?php echo $branche; ?></option>

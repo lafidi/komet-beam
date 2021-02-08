@@ -54,6 +54,7 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
         <div class="form-group">
             <label for="firma">Firma</label>
             <select class="form-control" name="firma" id="firma">
+                <option selected>Bitte auswählen</option>
                 <?php foreach ($unternehmensNamen as $unternehmensName):?>
                     <?php if ( $unternehmensName != '' ): ?>
                         <option value="<?php echo $unternehmensName; ?>" <?php echo ($unternehmensName == $_REQUEST['firma']) ? 'selected' : '' ?>><?php echo $unternehmensName; ?></option>
