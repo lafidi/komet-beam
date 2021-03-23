@@ -54,8 +54,8 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
         </div>
 
         <div class="form-group">
-            <label for="jahr">Jahr *</label>
-            <input type="text" class="form-control" name="jahr" id="jahr" placeholder="Jahr" required="required" value="<?php echo date('Y'); ?>">
+            <label for="jahr">Startjahr *</label>
+            <input type="text" class="form-control" name="jahr" id="jahr" placeholder="Startjahr" required="required" value="<?php echo date('Y'); ?>">
         </div>
 
         <div class="form-group">
@@ -246,7 +246,7 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
             <td><?php echo strip_tags($_REQUEST['firma']); ?></td>
         </tr>
         <tr>
-            <td>Jahr</td>
+            <td>Startjahr</td>
             <td><?php echo strip_tags($_REQUEST['jahr']); ?></td>
         </tr>
         <tr>
