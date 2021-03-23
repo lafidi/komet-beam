@@ -160,7 +160,7 @@ asort($branchen);
 
 <h1>Die Medizintechnik-Unternehmensdatenbank</h1>
 <h3>Ein Projekt der Konferenz der Medizintechnikfachschaften (KOMET)</h3>
-<p><a href="erfahrungenAnfragen.php" target="_blank">Hier geht es zur Anfrage von Erfahrungsberichten. Einfach hier klicken oder unten auf das Unternehmen.</a></p>
+<p><a href="erfahrungenAnfragen.php" target="_blank">Hier geht es zur Anfrage von Erfahrungskontakten. Einfach hier klicken oder unten auf das Unternehmen.</a></p>
 
 <p style="margin-bottom:2cm;"></p>
 <hr>
@@ -194,7 +194,7 @@ asort($branchen);
             <th onclick="sortTable(0)" title="Field Unternehmen">Unternehmen</th>
             <th onclick="sortTable(1)" title="Field Branche">Branche</th>
             <th onclick="sortTable(2)" title="Field Homepage">Homepage</th>
-            <th onclick="sortTable(3)" title="Field Erfahrungen">Erfahrungsberichte vorhanden</th>
+            <th onclick="sortTable(3)" title="Field Erfahrungen">Erfahrungskontakte vorhanden</th>
         </tr>
         </thead>
         <tbody>

@@ -10,7 +10,7 @@ $mailEnde = "Solltest du diese Anfrage nicht veranlasst haben, brauchst du nicht
 $mailBetreff = "Deine Anfrage über BEAM-Datenbank";
 $mailAnfrageAnfang = "Du bist als Erfahrungspate für die im Betreff genannte Firma als Pate genannt. Folgende Anfrage kam dazu herein. Um mit dem Absender in Kontakt zu treten, antworte direkt auf diese Mail oder schreibe ihm gesondert.";
 $mailAnfrageEnde = "\r\n\r\nWenn du nicht mehr in diesem Verteiler sein willst, lass uns das über beam@die-komet.org wissen, dann nehmen wir dich aus dem Verteiler wieder raus.";
-$mailAnfrageBetreff = "BEAM-Datenbank :: Anfrage zu deinem Erfahrungsbericht für die Firma";
+$mailAnfrageBetreff = "BEAM-Datenbank :: Anfrage zu deinem Erfahrungskontakt für die Firma";
 $mailAbsender = "beam@die-komet.org";
 
 $client = Google_Spreadsheet::getClient('google-api-zugang-F7QZQDBdmBA8nU93ndVt2A4UF7QZQDBdmBA8nU93ndVt2A4U.json');
@@ -34,7 +34,7 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
     <!DOCTYPE html>
     <html lang="de">
     <head>
-        <title>Anfrage Erfahrungsbericht</title>
+        <title>Anfrage Erfahrungskontakt</title>
         <meta charset="UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
@@ -65,8 +65,8 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
         </div>
 
         <div class="form-group">
-            <label for="fragen">Fragen oder Notizen an die Erfahrungsbericht-Kontakte</label>
-            <textarea class="form-control" name="fragen" id="fragen" placeholder="Fragen oder Notizen an die Erfahrungsbericht-Kontakte"><?php echo $_REQUEST['fragen'] ?></textarea>
+            <label for="fragen">Fragen oder Notizen an die Erfahrungs-Kontakte</label>
+            <textarea class="form-control" name="fragen" id="fragen" placeholder="Fragen oder Notizen an die Erfahrungs-Kontakte"><?php echo $_REQUEST['fragen'] ?></textarea>
         </div>
 
         <div class="form-group">
@@ -159,7 +159,7 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
     <!DOCTYPE html>
     <html lang="de">
     <head>
-        <title>Erfahrungsbericht angefragt</title>
+        <title>Erfahrungskontakt angefragt</title>
         <meta charset="UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
@@ -192,7 +192,7 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
             <td><?php echo strip_tags($_REQUEST['firma']); ?></td>
         </tr>
         <tr>
-            <td>Fragen oder Notizen an die Erfahrungsbericht-Kontakte</td>
+            <td>Fragen oder Notizen an die Erfahrungskontakt-Kontakte</td>
             <td><?php echo strip_tags($_REQUEST['fragen']); ?></td>
         </tr>
     </table>
