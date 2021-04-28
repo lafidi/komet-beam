@@ -203,7 +203,12 @@ asort($branchen);
         //write line by line
         foreach ($file->sheet('Unternehmen')->fetch()->items as $row):
             if ( $row['Unternehmen'] != '' ):
-            ?>
+                $scheme = parse_url($row['Homepage'], PHP_URL_SCHEME);
+                if (empty($scheme)) {
+                    $link = 'http://' . ltrim($row['Homepage'], '/');
+                }
+
+                ?>
             <tr>
                 <td>
                     <a href="erfahrungenAnfragen.php?firma=<?php echo urlencode($row['Unternehmen']) ?>" target="_blank"><?php echo $row['Unternehmen'] ?></a>
@@ -212,7 +217,7 @@ asort($branchen);
                     <?php echo $row['Branche'] ?>
                 </td>
                 <td>
-                    <a href="<?php echo $row['Homepage'] ?>" target="_blank"><?php echo $row['Homepage'] ?></a>
+                    <a href="<?php echo $link ?>" target="_blank"><?php echo $link ?></a>
                 </td>
                 <td>
                     <?php echo ($row['Erfahrungsberichte Praktika vorhanden'] == 'ja'

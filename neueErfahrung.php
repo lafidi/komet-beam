@@ -59,7 +59,7 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
         </div>
 
         <div class="form-group">
-            <label for="firma">Firma      <small>Deine Firma ist nicht dabei? Hier eintragen: NEUERLINK</small></label>
+            <label for="firma">Firma      <small><a href="neuesUnternehmen.php">Deine Firma ist nicht dabei? Hier eintragen.</a></small></label>
             <select class="form-control" name="firma" id="firma">
                 <option selected>Bitte auswählen</option>
                 <?php foreach ($unternehmensNamen as $unternehmensName):?>
