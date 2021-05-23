@@ -158,7 +158,8 @@ asort($branchen);
 
 <img src="Beam_Logo.svg" alt="KOMET-Logo" style="float: right;" width="400"><br>
 
-<h1>Die Medizintechnik-Unternehmensdatenbank</h1>
+<h1>BEAM - Beruf.Erfahrung.Austausch.Medizintechnik</h1>
+<h3>Die Medizintechnik-Unternehmensdatenbank</h3>
 <h3>Ein Projekt der Konferenz der Medizintechnikfachschaften (KOMET)</h3>
 <p><a href="erfahrungenAnfragen.php" target="_blank">Hier geht es zur Anfrage von Erfahrungskontakten. Einfach hier klicken oder unten auf das Unternehmen.</a></p>
 
