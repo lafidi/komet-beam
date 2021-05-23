@@ -193,8 +193,7 @@ asort($branchen);
         <tr>
             <th onclick="sortTable(0)" title="Field Unternehmen">Unternehmen</th>
             <th onclick="sortTable(1)" title="Field Branche">Branche</th>
-            <th onclick="sortTable(2)" title="Field Homepage">Homepage</th>
-            <th onclick="sortTable(3)" title="Field Erfahrungen">Erfahrungskontakte vorhanden</th>
+            <th onclick="sortTable(2)" title="Field Erfahrungen">Erfahrungskontakte vorhanden</th>
         </tr>
         </thead>
         <tbody>
@@ -215,9 +214,6 @@ asort($branchen);
                 </td>
                 <td>
                     <?php echo $row['Branche'] ?>
-                </td>
-                <td>
-                    <a href="<?php echo $link ?>" target="_blank"><?php echo $link ?></a>
                 </td>
                 <td>
                     <?php echo ($row['Erfahrungsberichte Praktika vorhanden'] == 'ja'
