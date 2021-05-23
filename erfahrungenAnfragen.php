@@ -8,8 +8,6 @@ $salt = "CCBL5amPqJHL3H9CanTM65t5";
 $mailAnfang = "Bitte klicke auf den folgenden Link um deine Anfrage über der BEAM-Datenbank der KOMET an die entsprechenden Kontakte abzusenden";
 $mailEnde = "Solltest du diese Anfrage nicht veranlasst haben, brauchst du nichts zu tun. Deine Daten werden dann nicht gespeichert.";
 $mailBetreff = "Deine Anfrage über BEAM-Datenbank";
-$mailAnfrageAnfang = "Du bist als Erfahrungspate für die im Betreff genannte Firma als Pate genannt. Folgende Anfrage kam dazu herein. Um mit dem Absender in Kontakt zu treten, antworte direkt auf diese Mail oder schreibe ihm gesondert.";
-$mailAnfrageEnde = "\r\n\r\nWenn du nicht mehr in diesem Verteiler sein willst, lass uns das über beam@die-komet.org wissen, dann nehmen wir dich aus dem Verteiler wieder raus.";
 $mailAnfrageBetreff = "BEAM-Datenbank :: Anfrage zu deinem Erfahrungskontakt für die Firma";
 $mailAbsender = "beam@die-komet.org";
 
@@ -98,12 +96,13 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
         $mailHeader = 'From: ' . $mailAbsender . "\r\n" .
             'Reply-To: ' . strip_tags($_REQUEST['e-mail']) . "\r\n";
 
-        $mailInhalt = $mailAnfrageAnfang . "\r\n" .
+        $mailInhalt = "du bekommst diese E-Mail, da du dich auf die-komet.org bereit erklärt hast, deine Erfahrungen aus einem Medizintechnik-Unternehmen zu teilen. Auf die-komet.org hat sich eine Person gemeldet, die sich gerne mit dir über deine Erfahrungen bei " . strip_tags($_REQUEST['firma']) . " austauschen möchte.\r\n\r\n" .
+            (strip_tags($_REQUEST['fragen'])) ? "Persönliche Nachricht (optional):\r\n" . strip_tags($_REQUEST['fragen']) . "\r\n\r\n" : "" .
+            "Jetzt liegt es an dir! Kontaktiere " . strip_tags($_REQUEST['name']) . ", damit ihr euch austauschen könnt. Zur Erinnerung: Wir geben deine Kontaktdaten nicht weiter. Du entscheidest, ob du dich nach dieser Anfrage mit der Person in Verbindung setzen möchtest.\r\n\r\n" .
+            "Kontaktdaten\r\n" .
             "Name des Anfragenden: " . strip_tags($_REQUEST['name']) . "\r\n" .
-            "E-Mail des Anfragenden: " . strip_tags($_REQUEST['e-mail']) . "\r\n" .
-            "Unternehmen: " . strip_tags($_REQUEST['firma']) . "\r\n" .
-            "Fragen bzw. Notizen: " . strip_tags($_REQUEST['fragen']) . "\r\n" .
-            $mailAnfrageEnde;
+            "E-Mail des Anfragenden: " . strip_tags($_REQUEST['e-mail']) . "\r\n\r\n" .
+            "Vielen Dank und viele Grüße\r\ndein BEAM-Team der KOMET\r\n\r\nWende dich an beam@die-komet.org, wenn du nicht mehr Teil unseres Erfahrungsschatzes sein möchtest.\r\n\r\n--\r\nBEAM - Beruf.Erfahrung.Austausch.Medizintechnik";
 
         $kontakte = $file->sheet('Erfahrungsberichte')->fetch()->items;
 
