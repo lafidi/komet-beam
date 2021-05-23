@@ -105,6 +105,11 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
             <input type="text" class="form-control" name="captcha" id="captcha" placeholder="Bitte das Ergebnis der Rechnung im Bild eintippen" required="required">
         </div>
 
+        <div>
+            <input type="checkbox" required="required" id="datenschutz" name="datenschutz">
+            <label for="datenschutz">Die <a href="https://die-komet.org/datenschutzerklaerung/" target="_blank">Datenschutzerklärung</a> habe ich zur Kenntnis genommen und erkenne diese an.</label>
+        </div>
+
         <button type="submit">Absenden</button>
 
         <small>Mit * markierte Felder sind Pflichtfelder.</small>
