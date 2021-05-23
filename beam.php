@@ -156,7 +156,7 @@ asort($branchen);
 
 <body>
 
-<img src="https://die-komet.org/wp-content/uploads/2019/05/KOMET_logo.png" alt="KOMET-Logo" style="float: right;" width="400"><br>
+<img src="Beam_Logo.svg" alt="KOMET-Logo" style="float: right;" width="400"><br>
 
 <h1>Die Medizintechnik-Unternehmensdatenbank</h1>
 <h3>Ein Projekt der Konferenz der Medizintechnikfachschaften (KOMET)</h3>
