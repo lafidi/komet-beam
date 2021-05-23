@@ -8,6 +8,8 @@ $file = $client->file('19u3EKsPTS_gnafqjFBMqY_IIWVHbUOFumObeiUwGlD4');
 $branchen = array_column($file->sheet('Branchen_Schlagworte')->fetch()->items, 'Branchen');
 asort($branchen);
 
+$erfahrungen = $file->sheet('Erfahrungsberichte')->fetch()->items;
+
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -173,7 +175,7 @@ asort($branchen);
         <option value="">bitte wählen</option>
         <?php foreach ($branchen as $branche):?>
             <?php if ( $branche != '' ): ?>
-                <option value="<?php echo $branche; ?>" <?php echo ($branche == $_REQUEST['branche']) ? 'selected' : '' ?>><?php echo $branche; ?></option>
+                <option value="<?php echo $branche; ?>" <?php echo (isset($_REQUEST['branche']) && $branche == $_REQUEST['branche']) ? 'selected' : '' ?>><?php echo $branche; ?></option>
             <?php endif; ?>
         <?php endforeach; ?>
     </select>
@@ -219,7 +221,7 @@ asort($branchen);
                 <td>
                     <?php
                     $erfahrungVorhanden = false;
-                    foreach ($file->sheet('Erfahrungsberichte')->fetch()->items as $erfahrung) {
+                    foreach ($erfahrungen as $erfahrung) {
                         if ($erfahrung['Firma'] == $row['Unternehmen']){
                             $erfahrungVorhanden = true;
                             break;
