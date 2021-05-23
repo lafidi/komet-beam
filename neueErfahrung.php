@@ -107,7 +107,7 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
 
         <div>
             <input type="checkbox" required="required" id="datenschutz" name="datenschutz">
-            <label for="datenschutz">Die <a href="https://die-komet.org/datenschutzerklaerung/" target="_blank">Datenschutzerklärung</a> habe ich zur Kenntnis genommen und erkenne diese an.</label>
+            <label for="datenschutz">Ich habe die <a href="https://die-komet.org/datenschutzerklaerung/" target="_blank">Datenschutzerklärung</a> gelesen und willige der Verarbeitung, Speicherung und Übermittlung meiner Daten auf einen Server außerhalb des EWR ein.</label>
         </div>
 
         <button type="submit">Absenden</button>
