@@ -113,7 +113,7 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
             mail (
                 $kontakt['E-Mail'],
                 $mailAnfrageBetreff . " " . strip_tags($_REQUEST['firma']),
-                $mailInhalt,
+                "Dies ist eine automatische E-Mail\r\n\r\nHallo " . $_REQUEST['name'] . ",\r\n\r\n" . $mailInhalt,
                 $mailHeader
             );
             ++$verschickteAnzahl;
@@ -125,7 +125,7 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
         mail (
             $mailAbsender,
             "Anfrage abgeschickt: " . $mailAnfrageBetreff . " " . strip_tags($_REQUEST['firma']),
-            $mailInhalt,
+            "",
             $mailHeader
         );
 
