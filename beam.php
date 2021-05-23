@@ -217,10 +217,17 @@ asort($branchen);
                     <?php echo $row['Branche'] ?>
                 </td>
                 <td>
-                    <?php echo ($row['Erfahrungsberichte Praktika vorhanden'] == 'ja'
-                        || $row['Erfahrungsberichte Werkstudent vorhanden'] == 'ja'
-                        || $row['Erfahrungsberichte Abschlussarbeit vorhanden'] == 'ja'
-                        || $row['Erfahrungsberichte Arbeitnehmer vorhanden'] == 'ja') ? 'ja' : 'nein' ?>
+                    <?php
+                    $erfahrungVorhanden = false;
+                    foreach ($file->sheet('Erfahrungsberichte')->fetch()->items as $erfahrung) {
+                        if ($erfahrung['Firma'] == $row['Unternehmen']){
+                            $erfahrungVorhanden = true;
+                            break;
+                        }
+                    }
+
+                    echo ($erfahrungVorhanden) ? 'ja' : 'nein';
+                    ?>
                 </td>
              </tr>
         <?php
