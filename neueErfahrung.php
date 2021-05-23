@@ -5,8 +5,6 @@ include_once ('mailblacklist.php');
 
 $salt = "TiExL4Qz245iuRPQ2sZSYFC8";
 
-$mailAnfang = "Bitte klicke auf den folgenden Link um deinen Eintrag in der BEAM-Datenbank der KOMET zu speichern";
-$mailEnde = "Solltest du diese Eintragung nicht veranlasst haben, brauchst du nichts zu tun. Deine Daten werden dann nicht gespeichert. Solltest du dich eingetragen haben und wieder gelöscht werden wollen, wende dich an beam@die-komet.org.";
 $mailBetreff = "Deine Eintragung in der BEAM-Datenbank";
 $mailAbsender = "beam@die-komet.org";
 
@@ -201,7 +199,11 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
         $query['hash'] = sha1($_REQUEST['e-mail'] . $salt);
 
         $mailLink = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "?" . http_build_query($query);
-        $mailInhalt = $mailAnfang . "\r\n" . $mailLink . "\r\n" . $mailEnde;
+        $mailInhalt = "Dies ist eine automatische E-Mail\r\n\r\nHallo " . $_REQUEST['name'] . ",\r\n\r\n" .
+            "du bekommst diese E-Mail, da du dich auf die-komet.org bereit erklärt hast, deine Erfahrungen aus einem Medizintechnik-Unternehmen zu teilen. Wir freuen uns sehr, dass du bereit bist deine Erfahrungen im Rahmen deines Praktikums, deiner Abschlussarbeit oder deiner Tätigkeits bei einem Medizintechnik-Unternehmen mit anderen Studierenden zu teilen.\r\n\r\n" .
+            "Bitte klicke noch auf den folgenden Link um deinen Eintrag in der BEAM-Datenbank der KOMET zu speichern\r\n" . $mailLink . "\r\n\r\n" .
+            "Sobald sich jemand auf der Homepage für dein Unternehmen interessiert, werden wir dich informieren. Du erhältst die Kontaktdaten der Person und kannst selbstständig Kontakt mit ihr aufnehmen. Deine Kontaktdaten werden von uns an niemanden weitergegeben. Du entscheidest, ob du dich nach einer Anfrage mit der Person in Verbindung setzen möchtest.\r\n\r\n" .
+            "Vielen Dank und viele Grüße\r\nDein BEAM-Team der KOMET\r\n\r\nWende dich an beam@die-komet.org, wenn du nicht mehr Teil unseres Erfahrungsschatzes sein möchtest.\r\n\r\n--\r\nBEAM - Beruf.Erfahrung.Austausch.Medizintechnik";
 
         mail (
             strip_tags($_REQUEST['e-mail']),
