@@ -43,8 +43,8 @@ if( !(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captch
         </div>
 
         <div class="form-group">
-            <label for="homepage">Homepage *</label>
-            <input type="text" class="form-control" name="homepage" id="homepage" placeholder="Homepage" required="required" value="<?php echo $_REQUEST['homepage'] ?>">
+            <label for="homepage">Unternehmens-Website</label>
+            <input type="text" class="form-control" name="homepage" id="homepage" placeholder="Homepage" value="<?php echo $_REQUEST['homepage'] ?>">
         </div>
 
         <div class="form-group">
@@ -110,7 +110,7 @@ elseif( $_REQUEST['captcha'] == $_SESSION['captcha'] ):
             <td><?php echo strip_tags($_REQUEST['branche']); ?></td>
         </tr>
         <tr>
-            <td>Homepage</td>
+            <td>Unternehmens-Website</td>
             <td><?php echo strip_tags($_REQUEST['homepage']); ?></td>
         </tr>
     </table>
