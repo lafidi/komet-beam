@@ -205,15 +205,15 @@ $erfahrungen = $file->sheet('Erfahrungsberichte')->fetch()->items;
         //write line by line
         foreach ($file->sheet('Unternehmen')->fetch()->items as $row):
             if ( $row['Unternehmen'] != '' ):
-                $scheme = parse_url($row['Homepage'], PHP_URL_SCHEME);
-                if (empty($scheme)) {
-                    $link = 'http://' . ltrim($row['Homepage'], '/');
-                }
+//                $scheme = parse_url($row['Homepage'], PHP_URL_SCHEME);
+//                if (empty($scheme)) {
+//                    $link = 'http://' . ltrim($row['Homepage'], '/');
+//                }
 
                 ?>
             <tr>
                 <td>
-                    <a href="erfahrungenAnfragen.php?firma=<?php echo urlencode($row['Unternehmen']) ?>" target="_blank"><?php echo $row['Unternehmen'] ?></a>
+                    <?php /*<a href="erfahrungenAnfragen.php?firma=<?php echo urlencode($row['Unternehmen']) ?>" target="_blank">*/?><?php echo $row['Unternehmen'] ?><?php /*</a>*/?>
                 </td>
                 <td>
                     <?php echo $row['Branche'] ?>
