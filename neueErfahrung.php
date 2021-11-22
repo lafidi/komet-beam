@@ -52,8 +52,8 @@ if( (!(isset($_SESSION['captcha'])) || ($_REQUEST['captcha'] != $_SESSION['captc
         </div>
 
         <div class="form-group">
-            <label for="jahr">Startjahr *</label>
-            <input type="text" class="form-control" name="jahr" id="jahr" placeholder="Startjahr" required="required" value="<?php echo date('Y'); ?>">
+            <label for="jahr">Beschäftigungsbeginn (Jahr) *</label>
+            <input type="text" class="form-control" name="jahr" id="jahr" placeholder="Beschäftigungsbeginn (Jahr)" required="required" value="<?php echo date('Y'); ?>">
         </div>
 
         <div class="form-group">
@@ -171,7 +171,7 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
             "Name des Eintragenden: " . strip_tags($_REQUEST['name']) . "\r\n" .
             "E-Mail des Eintragenden: " . strip_tags($_REQUEST['e-mail']) . "\r\n" .
             "Unternehmen: " . strip_tags($_REQUEST['firma']) . "\r\n" .
-            "Jahr: " . strip_tags($_REQUEST['jahr']) . "\r\n" .
+            "Beschäftigungsbeginn (Jahr): " . strip_tags($_REQUEST['jahr']) . "\r\n" .
             "Tätigkeit: " . strip_tags($_REQUEST['taetigkeit']) . "\r\n" .
             "Tätigkeitsfeld: " . strip_tags($_REQUEST['taetigkeitsfeld']) . "\r\n" .
             "Notizen: " . strip_tags($_REQUEST['notizen']) . "\r\n",
@@ -225,13 +225,13 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body <?php if (! $eintrag) {echo ('onload="alert(\'Bitte den Link in deiner E-Mail anklicken.\')"');} ?>>
 
     <p>
         <?php if ($eintrag): ?>
             Die folgenden Daten wurden übermittelt und gespeichert.
         <?php else: ?>
-            Die folgenden Daten wurden übermittelt und werden gespeichert nachdem du den Link in der Bestätigungsmail angeklickt hast.
+            Die folgenden Daten wurden übermittelt und werden gespeichert, nachdem du den Link in der Bestätigungsmail angeklickt hast. Solltest du die Mail nicht finden schaue bitte auch in deinem Spamordner nach.
         <?php endif; ?>
     </p>
 
@@ -253,7 +253,7 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
             <td><?php echo strip_tags($_REQUEST['firma']); ?></td>
         </tr>
         <tr>
-            <td>Startjahr</td>
+            <td>Beschäftigungsbeginn (Jahr)</td>
             <td><?php echo strip_tags($_REQUEST['jahr']); ?></td>
         </tr>
         <tr>
@@ -269,10 +269,6 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
             <td><?php echo strip_tags($_REQUEST['notizen']); ?></td>
         </tr>
     </table>
-
-    <p>
-        Damit andere auf diese Daten zugreifen können, müssen diese noch von uns freigeschaltet werden.
-    </p>
 
     </body>
     </html>

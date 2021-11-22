@@ -93,7 +93,7 @@ elseif( $_REQUEST['captcha'] == $_SESSION['captcha'] ):
     <body>
 
     <p>
-        Die folgenden Daten wurden übermittelt und gespeichert. Kehre jetzt <a href="neueErfahrung.php?firma=<?php echo urlencode($_REQUEST['name']) ?>" target="_blank">zurück</a> und Trage deinen Daten ein.
+        Die folgenden Daten wurden übermittelt und gespeichert. Kehre jetzt <a href="neueErfahrung.php?firma=<?php echo urlencode($_REQUEST['name']) ?>" target="_blank">zurück</a> und trage deine Daten ein.
     </p>
 
     <table>

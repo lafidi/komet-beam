@@ -163,7 +163,7 @@ $erfahrungen = $file->sheet('Erfahrungsberichte')->fetch()->items;
 <h1>BEAM - Beruf.Erfahrung.Austausch.Medizintechnik</h1>
 <h3>Die Medizintechnik-Unternehmensdatenbank</h3>
 <h3>Ein Projekt der Konferenz der Medizintechnikfachschaften (KOMET)</h3>
-<p><a href="erfahrungenAnfragen.php" target="_blank">Hier geht es zur Anfrage von Erfahrungskontakten. Einfach hier klicken oder unten auf das Unternehmen.</a></p>
+<p><a href="https://die-komet.org/beam/anfrage-stellen/" target="_blank">Hier geht es zur Anfrage von Erfahrungskontakten.</a></p>
 
 <p style="margin-bottom:2cm;"></p>
 <hr>

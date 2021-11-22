@@ -5,7 +5,7 @@ include_once ('mailblacklist.php');
 
 $salt = "CCBL5amPqJHL3H9CanTM65t5";
 
-$mailAnfang = "Bitte klicke auf den folgenden Link um deine Anfrage über der BEAM-Datenbank der KOMET an die entsprechenden Kontakte abzusenden";
+$mailAnfang = "Bitte klicke auf den folgenden Link, um deine Anfrage über die BEAM-Datenbank der KOMET an die entsprechenden Erfahrungskontakte abzusenden";
 $mailEnde = "Solltest du diese Anfrage nicht veranlasst haben, brauchst du nichts zu tun. Deine Daten werden dann nicht gespeichert.";
 $mailBetreff = "Deine Anfrage über BEAM-Datenbank";
 $mailAnfrageBetreff = "BEAM-Datenbank :: Anfrage zu deinem Erfahrungskontakt für die Firma";
@@ -96,8 +96,10 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
         $mailHeader = 'From: ' . $mailAbsender . "\r\n" .
             'Reply-To: ' . strip_tags($_REQUEST['e-mail']) . "\r\n";
 
+        $fragen = strip_tags($_REQUEST['fragen']) ? ("Persönliche Nachricht (optional):\r\n" . strip_tags($_REQUEST['fragen']) . "\r\n\r\n") : "";
+
         $mailInhalt = "du bekommst diese E-Mail, da du dich auf die-komet.org bereit erklärt hast, deine Erfahrungen aus einem Medizintechnik-Unternehmen zu teilen. Auf die-komet.org hat sich eine Person gemeldet, die sich gerne mit dir über deine Erfahrungen bei " . strip_tags($_REQUEST['firma']) . " austauschen möchte.\r\n\r\n" .
-            (strip_tags($_REQUEST['fragen'])) ? "Persönliche Nachricht (optional):\r\n" . strip_tags($_REQUEST['fragen']) . "\r\n\r\n" : "" .
+            $fragen .
             "Jetzt liegt es an dir! Kontaktiere " . strip_tags($_REQUEST['name']) . ", damit ihr euch austauschen könnt. Zur Erinnerung: Wir geben deine Kontaktdaten nicht weiter. Du entscheidest, ob du dich nach dieser Anfrage mit der Person in Verbindung setzen möchtest.\r\n\r\n" .
             "Kontaktdaten\r\n" .
             "Name des Anfragenden: " . strip_tags($_REQUEST['name']) . "\r\n" .
@@ -113,7 +115,7 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
             mail (
                 $kontakt['E-Mail'],
                 $mailAnfrageBetreff . " " . strip_tags($_REQUEST['firma']),
-                "Dies ist eine automatische E-Mail\r\n\r\nHallo " . $_REQUEST['name'] . ",\r\n\r\n" . $mailInhalt,
+                "Dies ist eine automatische E-Mail\r\n\r\nHallo " . $kontakt['Name'] . ",\r\n\r\n" . $mailInhalt,
                 $mailHeader
             );
             ++$verschickteAnzahl;
@@ -168,13 +170,13 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body <?php if (! $anfrageAbgeschickt) {echo ('onload="alert(\'Bitte den Link in deiner E-Mail anklicken.\')"');} ?>>
 
     <p>
         <?php if ( $anfrageAbgeschickt ): ?>
             Die folgenden Daten wurden übermittelt und an <?php echo $verschickteAnzahl ?> Kontakte versandt.
         <?php else: ?>
-            Die folgenden Daten wurden übermittelt und werden versandt nachdem du den Link in der Bestätigungsmail angeklickt hast.
+            Die folgenden Daten wurden übermittelt und werden versandt, nachdem du den Link in der Bestätigungsmail angeklickt hast. Solltest du die Mail nicht finden schaue bitte auch in deinem Spamordner nach.
         <?php endif; ?>
     </p>
 
@@ -196,14 +198,10 @@ elseif( ($_REQUEST['captcha'] == $_SESSION['captcha']) || (isset($_REQUEST['hash
             <td><?php echo strip_tags($_REQUEST['firma']); ?></td>
         </tr>
         <tr>
-            <td>Fragen oder Notizen an die Erfahrungskontakt-Kontakte</td>
+            <td>Fragen oder Notizen an die Erfahrungskontakte</td>
             <td><?php echo strip_tags($_REQUEST['fragen']); ?></td>
         </tr>
     </table>
-
-    <p>
-        Damit andere auf diese Daten zugreifen können, müssen diese noch von uns freigeschaltet werden.
-    </p>
 
     <script>
         function getQueryVariable(variable)
